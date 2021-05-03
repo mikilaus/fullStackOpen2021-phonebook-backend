@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const app = express();
 const cors = require("cors");
 const Person = require("./models/person");
+const { request } = require("express");
 
 app.use(cors());
 app.use(express.json());
@@ -123,6 +124,16 @@ app.post("/api/persons", (request, response) => {
   person.save().then((savedPerson) => {
     response.json(savedPerson);
   });
+});
+
+app.put("/api/persons/:id", (request, response) => {
+  const body = request.body;
+
+  Person.findByIdAndUpdate(request.params.id, body)
+    .then((result) => {
+      response.status(200).end();
+    })
+    .catch((error) => next(error));
 });
 
 // this has to be the last loaded middleware.
