@@ -30,7 +30,7 @@ const errorHandler = (error, request, response, next) => {
   next(error);
 };
 
-let persons = [
+/* let persons = [
   {
     id: 1,
     name: "Arto Hellas",
@@ -51,7 +51,7 @@ let persons = [
     name: "Mary Poppendick",
     number: "24-24-234-24",
   },
-];
+]; */
 
 app.get("/", (request, response) => {
   response.send("<h1>Hellooo World!</h1>");
@@ -93,10 +93,10 @@ app.delete("/api/persons/:id", (request, response, next) => {
     .catch((error) => next(error));
 });
 
-const genId = () => {
+/* const genId = () => {
   const id = Math.floor(Math.random() * 1000);
   return id;
-};
+}; */
 
 app.post("/api/persons", (request, response) => {
   const body = request.body;
