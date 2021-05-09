@@ -59,10 +59,10 @@ app.get("/", (request, response) => {
 
 app.get("/info", (request, response) => {
   let date = Date();
-  response.send(`
-  <p>Phonebook has info for ${persons.length} people.</p>
-  <p>${date}</p>
-  `);
+  Person.find({}).then((persons) => {
+    response.send(`<p>Phonebook has info for ${persons.length} people.</p>
+    <p>${date}</p>`);
+  });
 });
 
 app.get("/api/persons", (request, response) => {
